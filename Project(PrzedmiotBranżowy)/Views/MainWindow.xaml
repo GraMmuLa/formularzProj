@@ -4,9 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Project_PrzedmiotBranżowy_"
+        xmlns:viewmodels="clr-namespace:Project_PrzedmiotBranżowy_.ViewModels"
+        xmlns:views="clr-namespace:Project_PrzedmiotBranżowy_.Views"
+        xmlns:prism="http://prismlibrary.com/"
+        d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="800">
-    <Grid>
-
-    </Grid>
+    <ContentControl prism:RegionManager.RegionName="ContentRegion"/>
+    <!--<ContentControl Content="{Binding CurrentViewModel}">
+        <ContentControl.Resources>
+            <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}">
+                <views:HomeView/>
+            </DataTemplate>
+        </ContentControl.Resources>
+    </ContentControl>-->
 </Window>

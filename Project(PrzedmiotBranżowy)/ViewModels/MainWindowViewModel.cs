@@ -1,20 +1,15 @@
-﻿using Project_PrzedmiotBranżowy_.DAL;
-using System;
-using System.Collections.Generic;
+﻿using Project_PrzedmiotBranżowy_.Services;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project_PrzedmiotBranżowy_.ViewModels
 {
-    internal class MainWindowViewModel
+    public class MainWindowViewModel : BindableBase
     {
-        private readonly ApplicationDbContext _dbContext;
+        private readonly INavigationService _navigationService;
 
-        public MainWindowViewModel(ApplicationDbContext dbContext)
+        public MainWindowViewModel(INavigationService navigationService)
         {
-            _dbContext = dbContext;
+            _navigationService = navigationService;
         }
     }
 }

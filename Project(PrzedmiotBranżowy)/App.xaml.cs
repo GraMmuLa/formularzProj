@@ -1,33 +1,43 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Project_PrzedmiotBranżowy_.DAL;
-using Project_PrzedmiotBranżowy_.ViewModels;
-using System.Configuration;
-using System.Data;
-using System.Windows;
+﻿namespace Project_PrzedmiotBranżowy_;
 
-namespace Project_PrzedmiotBranżowy_;
+using Prism.Ioc;
+using Prism.Navigation.Regions;
+using Prism.Unity;
+using Project_PrzedmiotBranżowy_.DAL;
+using Project_PrzedmiotBranżowy_.Services;
+using Project_PrzedmiotBranżowy_.Views;
+using System.Windows;
 
 /// <summary>
 /// Interaction logic for App.xaml
 /// </summary>
-public partial class App : Application
+public partial class App : PrismApplication
 {
-    protected override void OnStartup(StartupEventArgs e)
+    protected override Window CreateShell()
     {
-        base.OnStartup(e);
-
-        ServiceCollection services = new();
-
-        services.AddDbContext<ApplicationDbContext>();
-
-        services.AddTransient<MainWindowViewModel>();
-
-        ServiceProvider serviceProvider = services.BuildServiceProvider();
-        MainWindow mainWindow = new MainWindow
-        {
-            DataContext = serviceProvider.GetRequiredService<MainWindowViewModel>()
-        };
+        return Container.Resolve<MainWindow>();
     }
 
+    protected override void RegisterTypes(IContainerRegistry containerRegistry)
+    {
+        containerRegistry.RegisterForNavigation<HomeView>(nameof(HomeView));
+        containerRegistry.RegisterForNavigation<AdminLoginView>(nameof(AdminLoginView));
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        IRegionManager regionManager = Container.Resolve<IRegionManager>();
+        regionManager.RequestNavigate("ContentRegion", nameof(HomeView));
+    }
+    protected override void RegisterRequiredTypes(IContainerRegistry containerRegistry)
+    {
+        base.RegisterRequiredTypes(containerRegistry);
+
+        containerRegistry.RegisterSingleton<INavigationService, NavigationService>();
+        containerRegistry.RegisterSingleton<ISecurityService, SecurityService>();
+        containerRegistry.RegisterSingleton<ApplicationDbContext>();
+    }
 }
 

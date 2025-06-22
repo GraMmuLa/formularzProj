@@ -32,5 +32,10 @@ namespace Project_PrzedmiotBranżowy_.Models
         public Admin Admin { get; set; } = null!;
 
         public List<Question> Questions { get; set; } = [];
+
+        public override string ToString()
+        {
+            return $"{Name}";
+        }
     }
 }
