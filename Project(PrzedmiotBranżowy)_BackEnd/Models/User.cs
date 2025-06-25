@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Project_PrzedmiotBranżowy_.Models
+namespace Project_PrzedmiotBranżowy_BackEnd.Models
 {
     [Table("users")]
     public class User

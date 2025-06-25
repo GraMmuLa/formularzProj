@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project_PrzedmiotBranżowy_.Models
+namespace Project_PrzedmiotBranżowy_BackEnd.Models
 {
     [Table("tests")]
     public class Test
@@ -23,15 +24,16 @@ namespace Project_PrzedmiotBranżowy_.Models
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [Column("created_at")]
+        [AllowNull]
         public DateTime CreatedAt { get; set; }
 
         [ForeignKey($"Tests_{nameof(AdminId)}_FK")]
         [Column("admin_id")]
         public int AdminId { get; set; }
 
-        public Admin Admin { get; set; } = null!;
+        public virtual Admin Admin { get; set; } = null!;
 
-        public List<Question> Questions { get; set; } = [];
+        public virtual List<Question> Questions { get; set; } = [];
 
         public override string ToString()
         {

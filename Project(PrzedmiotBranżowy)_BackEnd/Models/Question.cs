@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project_PrzedmiotBranżowy_.Models
+namespace Project_PrzedmiotBranżowy_BackEnd.Models
 {
     [Table("questions")]
     public class Question
@@ -29,9 +30,9 @@ namespace Project_PrzedmiotBranżowy_.Models
         [Column("test_id")]
         public int TestId { get; set; }
 
-        public Test Test { get; set; } = null!;
+        public virtual Test Test { get; set; } = null!;
 
-        public List<Answer> Answers { get; } = [];
+        public virtual List<Answer> Answers { get; } = [];
 
     }
 }

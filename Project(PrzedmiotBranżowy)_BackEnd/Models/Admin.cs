@@ -1,9 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
-namespace Project_PrzedmiotBranżowy_.Models
+namespace Project_PrzedmiotBranżowy_BackEnd.Models
 {
     [Table("admins")]
+    [Index(nameof(Username), IsUnique = true)]
     public class Admin
     {
         [Key]
@@ -23,8 +26,9 @@ namespace Project_PrzedmiotBranżowy_.Models
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [Column("created_at")]
+        [AllowNull]
         public DateTime CreatedAt { get; set; }
 
-        public List<Test> Tests { get; set; } = [];
+        public virtual List<Test> Tests { get; set; } = [];
     }
 }

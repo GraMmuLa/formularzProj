@@ -2,11 +2,12 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project_PrzedmiotBranżowy_.Models
+namespace Project_PrzedmiotBranżowy_BackEnd.Models
 {
     [Table("answers")]
     public class Answer
@@ -27,12 +28,13 @@ namespace Project_PrzedmiotBranżowy_.Models
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [Column("created_at")]
+        [AllowNull]
         public DateTime CreatedAt { get; set; }
 
         [ForeignKey($"Answers_{nameof(QuestionId)}_FK")]
         [Column("question_id")]
         public int QuestionId { get; set; }
 
-        public Question Question { get; set; } = null!;
+        public virtual Question Question { get; set; } = null!;
     }
 }

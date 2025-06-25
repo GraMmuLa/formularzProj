@@ -1,5 +1,5 @@
-﻿using Project_PrzedmiotBranżowy_.DAL;
-using Project_PrzedmiotBranżowy_.Models;
+﻿using Project_PrzedmiotBranżowy_BackEnd.DAL;
+using Project_PrzedmiotBranżowy_BackEnd.Models;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -7,9 +7,9 @@ namespace Project_PrzedmiotBranżowy_.Services
 {
     public class SecurityService : ISecurityService
     {
-        private readonly ApplicationDbContext _dbContext;
+        private readonly IApplicationDbContext _dbContext;
 
-        public SecurityService(ApplicationDbContext dbContext)
+        public SecurityService(IApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
         }

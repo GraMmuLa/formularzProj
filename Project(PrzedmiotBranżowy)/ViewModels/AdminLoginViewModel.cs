@@ -40,14 +40,21 @@ namespace Project_PrzedmiotBranżowy_.ViewModels
             
             LoginCommand = new DelegateCommand(() => Login());
 
-            NavigateHomeViewCommand = new NavigationCommand(navigationService, "ContentRegion", nameof(HomeView));
+            NavigateHomeViewCommand = new NavigationCommand(navigationService, "ContentRegion", ViewNamesNavigation.HomeView);
         }
 
         private void Login()
         {
             LoginCodes loginResult = _securityService.Login(Username, new string(Password?.Reverse()?.ToArray()));
+            NavigationParameters parameters = new()
+            {
+                { "username", Username ?? "" }
+            };
+
+            Username = Password = "";
+
             if (loginResult == LoginCodes.OK)
-                _navigationService.NavigateTo("ContentRegion", "HomeView");
+                _navigationService.NavigateTo("ContentRegion", ViewNamesNavigation.AdminTestsView, parameters);
         }
     }
 }

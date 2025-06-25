@@ -1,14 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Project_PrzedmiotBranżowy_.Models;
+using Project_PrzedmiotBranżowy_BackEnd.Models;
+using Project_PrzedmiotBranżowy_BackEnd.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
-namespace Project_PrzedmiotBranżowy_.DAL
+namespace Project_PrzedmiotBranżowy_BackEnd.DAL
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : DbContext, IApplicationDbContext
     {
         private readonly string _connectionString = System.Configuration
                                                         .ConfigurationManager
@@ -29,13 +30,24 @@ namespace Project_PrzedmiotBranżowy_.DAL
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer(_connectionString);
-
+            optionsBuilder
+                .UseLazyLoadingProxies()
+                .UseSqlServer(_connectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+        }
+
+        public override int SaveChanges()
+        {
+            return base.SaveChanges();
+        }
+
+        public Task<int> SaveChangesAsync()
+        {
+            return base.SaveChangesAsync();
         }
     }
 }

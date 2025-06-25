@@ -3,10 +3,14 @@
 using Prism.Ioc;
 using Prism.Navigation.Regions;
 using Prism.Unity;
-using Project_PrzedmiotBranżowy_.DAL;
+using Project_PrzedmiotBranżowy_BackEnd.DAL;
+using Project_PrzedmiotBranżowy_.Helpers;
 using Project_PrzedmiotBranżowy_.Services;
 using Project_PrzedmiotBranżowy_.Views;
 using System.Windows;
+using Project_PrzedmiotBranżowy_.ViewModels;
+using Project_PrzedmiotBranżowy_.Views.Dialogs;
+using Project_PrzedmiotBranżowy_.ViewModels.DialogViewModels;
 
 /// <summary>
 /// Interaction logic for App.xaml
@@ -20,8 +24,13 @@ public partial class App : PrismApplication
 
     protected override void RegisterTypes(IContainerRegistry containerRegistry)
     {
-        containerRegistry.RegisterForNavigation<HomeView>(nameof(HomeView));
-        containerRegistry.RegisterForNavigation<AdminLoginView>(nameof(AdminLoginView));
+        containerRegistry.RegisterForNavigation<HomeView, HomeViewModel>(ViewNamesNavigation.HomeView);
+        containerRegistry.RegisterForNavigation<AdminLoginView, AdminLoginViewModel>(ViewNamesNavigation.AdminLoginView);
+        containerRegistry.RegisterForNavigation<AdminTestsView, AdminTestsViewModel>(ViewNamesNavigation.AdminTestsView);
+
+        containerRegistry.RegisterDialog<AddTestDialogView, AddTestDialogViewModel>();
+        containerRegistry.RegisterDialog<AddQuestionDialogView, AddQuestionDialogViewModel>();
+        containerRegistry.RegisterDialog<AddAnswerDialogView, AddAnswerDialogViewModel>();
     }
 
     protected override void OnInitialized()
@@ -37,7 +46,7 @@ public partial class App : PrismApplication
 
         containerRegistry.RegisterSingleton<INavigationService, NavigationService>();
         containerRegistry.RegisterSingleton<ISecurityService, SecurityService>();
-        containerRegistry.RegisterSingleton<ApplicationDbContext>();
+        containerRegistry.RegisterSingleton<IApplicationDbContext, ApplicationDbContext>();
     }
 }
 

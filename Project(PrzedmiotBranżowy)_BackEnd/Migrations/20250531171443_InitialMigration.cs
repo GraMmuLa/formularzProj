@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Project_PrzedmiotBranżowy_.Migrations
+namespace Project_PrzedmiotBranżowy_BackEnd.Migrations
 {
     /// <inheritdoc />
     public partial class InitialMigration : Migration
@@ -90,6 +90,7 @@ namespace Project_PrzedmiotBranżowy_.Migrations
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     user_id = table.Column<int>(type: "int", nullable: false),
+                    created_at = table.Column<DateTime>(type: "datetime2", nullable: false),
                     test_id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
