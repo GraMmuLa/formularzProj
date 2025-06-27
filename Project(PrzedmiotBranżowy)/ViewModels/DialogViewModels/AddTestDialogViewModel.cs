@@ -1,6 +1,6 @@
-﻿using Project_PrzedmiotBranżowy_.Helpers;
-using Project_PrzedmiotBranżowy_BackEnd.DAL;
-using Project_PrzedmiotBranżowy_BackEnd.Models;
+﻿using Project_PrzedmiotBranzowy_Core.Helpers;
+using Project_PrzedmiotBranzowy_BackEnd.DAL;
+using Project_PrzedmiotBranzowy_BackEnd.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,8 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Navigation;
+using Project_PrzedmiotBranzowy_.ViewNames;
 
-namespace Project_PrzedmiotBranżowy_.ViewModels.DialogViewModels
+namespace Project_PrzedmiotBranzowy_.ViewModels.DialogViewModels
 {
     class AddTestDialogViewModel : BindableBase, IDialogAware
     {

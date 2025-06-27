@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Project_PrzedmiotBranżowy_BackEnd.DAL;
+using Project_PrzedmiotBranzowy_BackEnd.DAL;
 
 #nullable disable
 
-namespace Project_PrzedmiotBranżowy_BackEnd.Migrations
+namespace Project_PrzedmiotBranzowy_BackEnd.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot

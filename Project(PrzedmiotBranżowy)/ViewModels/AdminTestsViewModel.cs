@@ -1,15 +1,15 @@
-﻿using Project_PrzedmiotBranżowy_.Helpers;
-using Project_PrzedmiotBranżowy_.Services;
-using Project_PrzedmiotBranżowy_BackEnd.DAL;
-using Project_PrzedmiotBranżowy_BackEnd.Models;
+﻿using Project_PrzedmiotBranzowy_Core.Helpers;
+using Project_PrzedmiotBranzowy_Core.Services;
+using Project_PrzedmiotBranzowy_BackEnd.DAL;
+using Project_PrzedmiotBranzowy_BackEnd.Models;
 using System.Collections.ObjectModel;
 using System.Windows;
+using Project_PrzedmiotBranzowy_.ViewNames;
 
-namespace Project_PrzedmiotBranżowy_.ViewModels
+namespace Project_PrzedmiotBranzowy_.ViewModels
 {
     public class AdminTestsViewModel : BindableBase, INavigationAware
     {
-        private readonly INavigationService _navigationService;
         private readonly IApplicationDbContext _applicationDbContext;
         private readonly IDialogService _dialogService;
 
@@ -46,14 +46,11 @@ namespace Project_PrzedmiotBranżowy_.ViewModels
         public DelegateCommand EditTestCommand { get; private set; }
         public DelegateCommand SaveChangesCommand { get; private set; }
 
-        public AdminTestsViewModel(INavigationService navigationService,
-            IApplicationDbContext applicationDbContext,
-            IDialogService dialogService) {
+        public AdminTestsViewModel(IApplicationDbContext applicationDbContext,
+            IDialogService dialogService)
+        {
             _applicationDbContext = applicationDbContext;
-            _navigationService = navigationService;
             _dialogService = dialogService;
-
-            Tests = new ObservableCollection<Test>(_applicationDbContext.Tests);
 
             AddTestCommand = new DelegateCommand(() => AddTest());
             DeleteTestCommand = new DelegateCommand(() => DeleteTest(SelectedTest!));
@@ -67,6 +64,8 @@ namespace Project_PrzedmiotBranżowy_.ViewModels
 
             _currentAdmin = _applicationDbContext.Admins.FirstOrDefault(
                 (x) => x.Username == navigationContext.Parameters.GetValue<string>("username"));
+
+            Tests = new ObservableCollection<Test>(_currentAdmin!.Tests);
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext)

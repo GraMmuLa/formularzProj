@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="Project_PrzedmiotBranzowy_.Views.AdminRegisterView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Project_PrzedmiotBranzowy_.Views"
+             xmlns:viewmodels="clr-namespace:Project_PrzedmiotBranzowy_.ViewModels"
+            xmlns:helpers="clr-namespace:Project_PrzedmiotBranzowy_Core.Helpers;assembly=Project_PrzedmiotBranzowy_Core"
+             d:DataContext="{d:DesignInstance Type=viewmodels:AdminRegisterViewModel}"
+             mc:Ignorable="d"
+             d:DesignHeight="650" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Views/Styles/GoBackButtonStyle.xaml"/>
+    </UserControl.Resources>
+    <StackPanel>
+        <Button Command="{Binding NavigateHomeViewCommand}" Style="{StaticResource goBackButton}" HorizontalAlignment="Left" Content="&lt;-" FontSize="24" Margin="50,50,0,0" Width="65" Height="65"/>
+
+        <StackPanel Margin="0,40,0,0">
+            <StackPanel Margin="0,0,0,20" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Label Content="Введіть логін" Margin="0,0,0,5" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="22"/>
+                <TextBox Text="{Binding Username, Mode=TwoWay}" Width="250" FontSize="24" HorizontalAlignment="Stretch"/>
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,20">
+                <Label Content="Введіть пароль" Margin="0,0,0,5" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="22"/>
+                <PasswordBox helpers:PasswordBoxHelper.BoundPassword="{Binding Password, Mode=TwoWay}" Width="250" PasswordChar="*" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,50">
+                <Label Content="Введіть пароль повторно" Margin="0,0,0,5" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="22"/>
+                <PasswordBox helpers:PasswordBoxHelper.BoundPassword="{Binding RepeatPassword, Mode=TwoWay}"  Width="250" PasswordChar="*" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
+            </StackPanel>
+
+            <Button Command="{Binding RegisterCommand}" Content="Зареєструватися" FontSize="24" Padding="10,5,10,5" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

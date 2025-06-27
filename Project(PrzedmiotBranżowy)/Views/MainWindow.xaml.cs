@@ -1,4 +1,4 @@
-﻿using Project_PrzedmiotBranżowy_.ViewModels;
+﻿using Project_PrzedmiotBranzowy_.ViewModels;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,7 +10,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Project_PrzedmiotBranżowy_;
+namespace Project_PrzedmiotBranzowy_;
 
 /// <summary>
 /// Interaction logic for MainWindow.xaml

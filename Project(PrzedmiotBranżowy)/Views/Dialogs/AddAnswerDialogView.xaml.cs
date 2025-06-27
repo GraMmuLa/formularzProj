@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Project_PrzedmiotBranżowy_.Views.Dialogs
+namespace Project_PrzedmiotBranzowy_.Views.Dialogs
 {
     /// <summary>
     /// Логика взаимодействия для AddAnswerDialogView.xaml

@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="Project_PrzedmiotBranzowy_.Views.TestView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:local="clr-namespace:Project_PrzedmiotBranzowy_.Views"
+             xmlns:viewmodels="clr-namespace:Project_PrzedmiotBranzowy_.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:TestViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Views/Styles/TestListBox.xaml"/>
+    </UserControl.Resources>
+    <StackPanel>
+        <TextBlock Text="{Binding CurrentQuestion.Value.Title, Mode=TwoWay}"/>
+
+        <ListBox ItemsSource="{Binding CurrentQuestion.ListBoxModels, Mode=TwoWay}"
+         SelectedItem="{Binding ChosenAnswer}"
+         SelectionMode="Single">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <RadioButton Content="{Binding Value.Title, Mode=TwoWay}"
+                         GroupName="AnswersGroup"
+                         IsChecked="{Binding IsSelected, Mode=TwoWay}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <prism:InvokeCommandAction 
+                            Command="{Binding DataContext.SelectAnswerCommand,
+                                    RelativeSource={RelativeSource AncestorType=ListBox}}"
+                            CommandParameter="{Binding}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </RadioButton>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Button Content="{Binding ButtonContent}" Command="{Binding NextQuestionCommand}"/>
+    </StackPanel>
+</UserControl>

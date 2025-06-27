@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Query.Internal;
-using Project_PrzedmiotBranżowy_BackEnd.Models;
+using Project_PrzedmiotBranzowy_BackEnd.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Navigation;
 
-namespace Project_PrzedmiotBranżowy_.ViewModels.DialogViewModels
+namespace Project_PrzedmiotBranzowy_.ViewModels.DialogViewModels
 {
     class AddAnswerDialogViewModel : BindableBase, IDialogAware
     {

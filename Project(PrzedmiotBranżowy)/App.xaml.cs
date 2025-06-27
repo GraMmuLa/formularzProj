@@ -1,16 +1,16 @@
-﻿namespace Project_PrzedmiotBranżowy_;
+﻿namespace Project_PrzedmiotBranzowy_;
 
 using Prism.Ioc;
 using Prism.Navigation.Regions;
 using Prism.Unity;
-using Project_PrzedmiotBranżowy_BackEnd.DAL;
-using Project_PrzedmiotBranżowy_.Helpers;
-using Project_PrzedmiotBranżowy_.Services;
-using Project_PrzedmiotBranżowy_.Views;
+using Project_PrzedmiotBranzowy_.ViewModels;
+using Project_PrzedmiotBranzowy_.ViewModels.DialogViewModels;
+using Project_PrzedmiotBranzowy_.ViewNames;
+using Project_PrzedmiotBranzowy_.Views;
+using Project_PrzedmiotBranzowy_.Views.Dialogs;
+using Project_PrzedmiotBranzowy_BackEnd.DAL;
+using Project_PrzedmiotBranzowy_Core.Services;
 using System.Windows;
-using Project_PrzedmiotBranżowy_.ViewModels;
-using Project_PrzedmiotBranżowy_.Views.Dialogs;
-using Project_PrzedmiotBranżowy_.ViewModels.DialogViewModels;
 
 /// <summary>
 /// Interaction logic for App.xaml
@@ -24,13 +24,17 @@ public partial class App : PrismApplication
 
     protected override void RegisterTypes(IContainerRegistry containerRegistry)
     {
-        containerRegistry.RegisterForNavigation<HomeView, HomeViewModel>(ViewNamesNavigation.HomeView);
-        containerRegistry.RegisterForNavigation<AdminLoginView, AdminLoginViewModel>(ViewNamesNavigation.AdminLoginView);
-        containerRegistry.RegisterForNavigation<AdminTestsView, AdminTestsViewModel>(ViewNamesNavigation.AdminTestsView);
 
-        containerRegistry.RegisterDialog<AddTestDialogView, AddTestDialogViewModel>();
-        containerRegistry.RegisterDialog<AddQuestionDialogView, AddQuestionDialogViewModel>();
-        containerRegistry.RegisterDialog<AddAnswerDialogView, AddAnswerDialogViewModel>();
+        containerRegistry.RegisterForNavigation<HomeView, HomeViewModel>(ViewNamesNavigation.HomeViewName);
+        containerRegistry.RegisterForNavigation<AdminLoginView, AdminLoginViewModel>(ViewNamesNavigation.AdminLoginViewName);
+        containerRegistry.RegisterForNavigation<AdminRegisterView, AdminRegisterViewModel>(ViewNamesNavigation.AdminRegisterViewName);
+        containerRegistry.RegisterForNavigation<AdminTestsView, AdminTestsViewModel>(ViewNamesNavigation.AdminTestsViewName);
+        containerRegistry.RegisterForNavigation<StartTestView, StartTestViewModel>(ViewNamesNavigation.StartTestViewName);
+        containerRegistry.RegisterForNavigation<TestView, TestViewModel>(ViewNamesNavigation.StartTestViewName);
+
+        containerRegistry.RegisterDialog<AddTestDialogView, AddTestDialogViewModel>(ViewNamesDialogs.AddTestDialogViewName);
+        containerRegistry.RegisterDialog<AddQuestionDialogView, AddQuestionDialogViewModel>(ViewNamesDialogs.AddQuestionDialogViewName);
+        containerRegistry.RegisterDialog<AddAnswerDialogView, AddAnswerDialogViewModel>(ViewNamesDialogs.AddAnswerDialogViewName);
     }
 
     protected override void OnInitialized()
@@ -38,7 +42,7 @@ public partial class App : PrismApplication
         base.OnInitialized();
 
         IRegionManager regionManager = Container.Resolve<IRegionManager>();
-        regionManager.RequestNavigate("ContentRegion", nameof(HomeView));
+        regionManager.RequestNavigate(ViewNamesNavigation.ContentRegion, nameof(HomeView));
     }
     protected override void RegisterRequiredTypes(IContainerRegistry containerRegistry)
     {

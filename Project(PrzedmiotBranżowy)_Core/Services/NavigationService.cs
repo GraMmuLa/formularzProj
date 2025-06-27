@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project_PrzedmiotBranżowy_.Services
+namespace Project_PrzedmiotBranzowy_Core.Services
 {
     public class NavigationService : INavigationService
     {

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0-windows</TargetFramework>
-    <RootNamespace>Project_PrzedmiotBranżowy__BackEnd</RootNamespace>
+    <RootNamespace>Project_PrzedmiotBranzowy__BackEnd</RootNamespace>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <ImplicitUsings>enable</ImplicitUsings>

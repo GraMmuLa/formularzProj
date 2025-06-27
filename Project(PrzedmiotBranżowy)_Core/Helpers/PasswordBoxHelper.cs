@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace Project_PrzedmiotBranżowy_.Helpers
+namespace Project_PrzedmiotBranzowy_Core.Helpers
 {
     public static class PasswordBoxHelper
     {

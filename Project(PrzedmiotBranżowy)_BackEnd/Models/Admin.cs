@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Project_PrzedmiotBranżowy_BackEnd.Models
+namespace Project_PrzedmiotBranzowy_BackEnd.Models
 {
     [Table("admins")]
     [Index(nameof(Username), IsUnique = true)]

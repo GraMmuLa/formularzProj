@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Project_PrzedmiotBranżowy_.Views
+namespace Project_PrzedmiotBranzowy_.Views
 {
     /// <summary>
     /// Логика взаимодействия для AdminTestsView.xaml

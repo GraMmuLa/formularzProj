@@ -1,4 +1,4 @@
-﻿using Project_PrzedmiotBranżowy_.ViewModels;
+﻿using Project_PrzedmiotBranzowy_.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Project_PrzedmiotBranżowy_.Views
+namespace Project_PrzedmiotBranzowy_.Views
 {
     /// <summary>
     /// Логика взаимодействия для HomeView.xaml

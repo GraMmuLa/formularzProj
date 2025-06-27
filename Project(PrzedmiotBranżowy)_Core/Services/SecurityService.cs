@@ -1,9 +1,10 @@
-﻿using Project_PrzedmiotBranżowy_BackEnd.DAL;
-using Project_PrzedmiotBranżowy_BackEnd.Models;
+﻿using Project_PrzedmiotBranzowy_BackEnd.DAL;
+using Project_PrzedmiotBranzowy_BackEnd.Models;
+using Project_PrzedmiotBranzowy_Core.Helpers;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Project_PrzedmiotBranżowy_.Services
+namespace Project_PrzedmiotBranzowy_Core.Services
 {
     public class SecurityService : ISecurityService
     {
@@ -16,9 +17,9 @@ namespace Project_PrzedmiotBranżowy_.Services
         
         public LoginCodes Login(string? username, string? password)
         {
-            if (username is null)
+            if (string.IsNullOrEmpty(username))
                 return LoginCodes.EMPTY_USERNAME;
-            if (password is null)
+            if (string.IsNullOrEmpty(password))
                 return LoginCodes.EMPTY_PASSWORD;
 
             Admin? foundAdmin = _dbContext.Admins.FirstOrDefault((x) => x.Username == username);
@@ -30,6 +31,31 @@ namespace Project_PrzedmiotBranżowy_.Services
             if(password != foundAdmin.Password)
                 return LoginCodes.WRONG_PASSWORD;
                 
+            return LoginCodes.OK;
+        }
+
+        public LoginCodes Register(string? username, string? password, string? repeatPassword)
+        {
+            if (string.IsNullOrEmpty(username))
+                return LoginCodes.EMPTY_USERNAME;
+            if (string.IsNullOrEmpty(password))
+                return LoginCodes.EMPTY_PASSWORD;
+            if (string.IsNullOrEmpty(repeatPassword))
+                return LoginCodes.EMPTY_PASSWORD_REPEAT;
+            if (repeatPassword != password)
+                return LoginCodes.DIFFERENT_PASSWORDS;
+
+            password = EncryptPassword(password);
+
+            Admin newAdmin = new()
+            {
+                Username = username,
+                Password = password,
+            };
+
+            _dbContext.Admins.Add(newAdmin);
+            _dbContext.SaveChanges();
+
             return LoginCodes.OK;
         }
 

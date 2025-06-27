@@ -1,8 +1,8 @@
-﻿using Project_PrzedmiotBranżowy_.Helpers;
-using Project_PrzedmiotBranżowy_.Services;
-using Project_PrzedmiotBranżowy_.Views;
+﻿using Project_PrzedmiotBranzowy_.ViewNames;
+using Project_PrzedmiotBranzowy_Core.Helpers;
+using Project_PrzedmiotBranzowy_Core.Services;
 
-namespace Project_PrzedmiotBranżowy_.ViewModels
+namespace Project_PrzedmiotBranzowy_.ViewModels
 {
     internal class AdminLoginViewModel : BindableBase
     {
@@ -40,7 +40,9 @@ namespace Project_PrzedmiotBranżowy_.ViewModels
             
             LoginCommand = new DelegateCommand(() => Login());
 
-            NavigateHomeViewCommand = new NavigationCommand(navigationService, "ContentRegion", ViewNamesNavigation.HomeView);
+            NavigateHomeViewCommand = new NavigationCommand(navigationService,
+                ViewNamesNavigation.ContentRegion,
+                ViewNamesNavigation.HomeViewName);
         }
 
         private void Login()
@@ -48,13 +50,15 @@ namespace Project_PrzedmiotBranżowy_.ViewModels
             LoginCodes loginResult = _securityService.Login(Username, new string(Password?.Reverse()?.ToArray()));
             NavigationParameters parameters = new()
             {
-                { "username", Username ?? "" }
+                { "username", Username ?? string.Empty }
             };
 
-            Username = Password = "";
+            Username = Password = string.Empty;
 
             if (loginResult == LoginCodes.OK)
-                _navigationService.NavigateTo("ContentRegion", ViewNamesNavigation.AdminTestsView, parameters);
+                _navigationService.NavigateTo(ViewNamesNavigation.ContentRegion,
+                    ViewNamesNavigation.AdminTestsViewName,
+                    parameters);
         }
     }
 }

@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project_PrzedmiotBranżowy_BackEnd.Models
+namespace Project_PrzedmiotBranzowy_BackEnd.Models
 {
     [Table("tests_users")]
     public class TestUser

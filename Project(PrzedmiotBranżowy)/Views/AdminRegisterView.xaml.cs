@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Project_PrzedmiotBranzowy_.Views.Dialogs
+namespace Project_PrzedmiotBranzowy_.Views
 {
     /// <summary>
-    /// Логика взаимодействия для AddQuestionDialogView.xaml
+    /// Логика взаимодействия для AdminRegisterView.xaml
     /// </summary>
-    public partial class AddQuestionDialogView : UserControl
+    public partial class AdminRegisterView : UserControl
     {
-        public AddQuestionDialogView()
+        public AdminRegisterView()
         {
             InitializeComponent();
         }
