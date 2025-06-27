@@ -1,3 +1,3 @@
 # Projekt w ramach przedmiotu Branżowy
 
-Wykonane przez studenta grupy 2-S300L-PiTWW Pryhornytskyi Volodymyr
+Wykonane przez studenta grupy 2-S122L-PiTWW Pryhornytskyi Volodymyr
