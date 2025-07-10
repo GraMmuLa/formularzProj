@@ -1,4 +1,4 @@
-﻿namespace Project_PrzedmiotBranzowy__Core.Helpers;
+﻿namespace Project_PrzedmiotBranzowy_Core.Helpers;
 
 public class ListBoxModel<T> : BindableBase, IListBoxModel
 {

@@ -1,5 +1,4 @@
 ﻿using Project_PrzedmiotBranzowy_.ViewNames;
-using Project_PrzedmiotBranzowy__Core.Helpers;
 using Project_PrzedmiotBranzowy_BackEnd.Models;
 using Project_PrzedmiotBranzowy_Core.Services;
 using System.Windows;
@@ -31,7 +30,7 @@ namespace Project_PrzedmiotBranzowy_.ViewModels
         public StartTestViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
-            StartTestCommand = new DelegateCommand(() => StartQuiz());
+            StartTestCommand = new DelegateCommand(StartQuiz);
         }
 
         public void StartQuiz()

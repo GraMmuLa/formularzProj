@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Project_PrzedmiotBranzowy__Core.Helpers
+﻿namespace Project_PrzedmiotBranzowy_Core.Helpers
 {
     public interface IListBoxModel
     {

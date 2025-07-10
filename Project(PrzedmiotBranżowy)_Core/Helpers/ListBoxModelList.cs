@@ -1,13 +1,6 @@
-﻿using Project_PrzedmiotBranzowy__Core.Helpers;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 
-namespace Project_PrzedmiotBranzowy__Core.Helpers
+namespace Project_PrzedmiotBranzowy_Core.Helpers
 {
     public class ListBoxModelList<T, F> : BindableBase, IListBoxModel
     {

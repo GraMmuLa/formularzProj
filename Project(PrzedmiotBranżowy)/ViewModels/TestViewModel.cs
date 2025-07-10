@@ -1,17 +1,14 @@
-﻿using Microsoft.Identity.Client;
-using Project_PrzedmiotBranzowy_.ViewNames;
-using Project_PrzedmiotBranzowy__Core.Helpers;
-using Project_PrzedmiotBranzowy_BackEnd.Models;
+﻿using Project_PrzedmiotBranzowy_.ViewNames;
 using Project_PrzedmiotBranzowy_Core.Helpers;
+using Project_PrzedmiotBranzowy_BackEnd.Models;
 using Project_PrzedmiotBranzowy_Core.Services;
-using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace Project_PrzedmiotBranzowy_.ViewModels
 {
     internal class TestViewModel : BindableBase, INavigationAware
     {
-        private INavigationService _navigationService;
+        private readonly INavigationService _navigationService;
 
         private Test _currentTest;
         private User _currentUser;

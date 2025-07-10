@@ -1,10 +1,4 @@
-﻿using Microsoft.Identity.Client;
-using Project_PrzedmiotBranzowy_Core.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Project_PrzedmiotBranzowy_Core.Services;
 
 namespace Project_PrzedmiotBranzowy_Core.Helpers
 {

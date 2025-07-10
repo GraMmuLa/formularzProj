@@ -1,16 +1,7 @@
-﻿using Project_PrzedmiotBranzowy_Core.Helpers;
-using Project_PrzedmiotBranzowy_BackEnd.DAL;
+﻿using Project_PrzedmiotBranzowy_.ViewNames;
 using Project_PrzedmiotBranzowy_BackEnd.Models;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Navigation;
-using Project_PrzedmiotBranzowy_.ViewNames;
-using Project_PrzedmiotBranzowy__Core.Helpers;
 
 namespace Project_PrzedmiotBranzowy_.ViewModels.DialogViewModels
 {
@@ -66,13 +57,13 @@ namespace Project_PrzedmiotBranzowy_.ViewModels.DialogViewModels
 
             Title = "Додати тест";
 
-            Questions = new();
-            Test = new();
-
-            AddQuestionCommand = new DelegateCommand(() => AddQuestion());
+            AddQuestionCommand = new DelegateCommand(AddQuestion);
             EditQuestionCommand = new DelegateCommand<Question>(DeleteQuestion, CanEditQuestion);
             DeleteQuestionCommand = new DelegateCommand<Question>(EditQuestion, CanDeleteQuestion);
-            SaveTestCommand = new DelegateCommand(() => SaveTest());
+            SaveTestCommand = new DelegateCommand(SaveTest);
+
+            Questions = new();
+            Test = new();
         }
 
         private bool CanEditQuestion(Question question) => question != null;

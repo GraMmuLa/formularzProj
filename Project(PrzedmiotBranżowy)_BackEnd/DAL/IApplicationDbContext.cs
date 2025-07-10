@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Project_PrzedmiotBranzowy_BackEnd.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project_PrzedmiotBranzowy_BackEnd.DAL
 {

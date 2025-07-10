@@ -39,7 +39,7 @@ namespace Project_PrzedmiotBranzowy_.ViewModels
             _navigationService = navigationService;
             _securityService = securityService;
             
-            LoginCommand = new DelegateCommand(() => Login());
+            LoginCommand = new DelegateCommand(Login);
 
             NavigateHomeViewCommand = new NavigationCommand(navigationService,
                 ViewNamesNavigation.ContentRegion,
