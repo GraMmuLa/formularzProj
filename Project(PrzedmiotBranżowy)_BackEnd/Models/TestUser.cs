@@ -1,12 +1,7 @@
-﻿using System;
-using System.CodeDom.Compiler;
-using System.Collections.Generic;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project_PrzedmiotBranzowy_BackEnd.Models
 {
@@ -26,6 +21,9 @@ namespace Project_PrzedmiotBranzowy_BackEnd.Models
         [Column("test_id")]
         public int TestId { get; set; }
 
+        [Column("marks")]
+        [DefaultValue(0)]
+        public uint Marks { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [Column("created_at")]

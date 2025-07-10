@@ -1,6 +1,7 @@
 ﻿using Project_PrzedmiotBranzowy_.ViewNames;
 using Project_PrzedmiotBranzowy_Core.Helpers;
 using Project_PrzedmiotBranzowy_Core.Services;
+using System.Windows;
 
 namespace Project_PrzedmiotBranzowy_.ViewModels
 {
@@ -59,6 +60,8 @@ namespace Project_PrzedmiotBranzowy_.ViewModels
                 _navigationService.NavigateTo(ViewNamesNavigation.ContentRegion,
                     ViewNamesNavigation.AdminTestsViewName,
                     parameters);
+            else
+                MessageBox.Show("Введені ім'я користувача та/або пароль неправильні");
         }
     }
 }

@@ -15,6 +15,7 @@ namespace Project_PrzedmiotBranzowy_.ViewModels
 
         private Test _currentTest;
         private User _currentUser;
+        private TestUser _testUser;
         private int _currentQuestionIndex;
 
         private List<ListBoxModel<Answer>> _chosenAnswers = new();
@@ -81,6 +82,10 @@ namespace Project_PrzedmiotBranzowy_.ViewModels
                     _navigationService.NavigateTo(ViewNamesNavigation.ContentRegion,
                     ViewNamesNavigation.HomeViewName);
                 });
+
+                if (ChosenAnswer is not null && ChosenAnswer.Value.IsCorrect)
+                    ++_testUser.Marks;
+
                 SetCurrentQuestion(_currentTest.Questions[_currentQuestionIndex++]);
                 //TODO (+mark if correct answer)
             }
@@ -96,10 +101,17 @@ namespace Project_PrzedmiotBranzowy_.ViewModels
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             _currentQuestionIndex = 0;
-            NextQuestionCommand = new DelegateCommand(() => NextQuestion());
+            NextQuestionCommand = new DelegateCommand(NextQuestion);
             ButtonContent = "Наступне питання";
             _currentUser = navigationContext.Parameters.GetValue<User>("user");
             _currentTest = navigationContext.Parameters.GetValue<Test>("test");
+
+            _testUser = new()
+            {
+                User = _currentUser,
+                Test = _currentTest,
+                Marks = 0
+            };
 
             SetCurrentQuestion(_currentTest.Questions[_currentQuestionIndex++]);
         }

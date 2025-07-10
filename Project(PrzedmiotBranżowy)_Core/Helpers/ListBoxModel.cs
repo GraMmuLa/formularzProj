@@ -16,8 +16,14 @@ public class ListBoxModel<T> : BindableBase, IListBoxModel
         set { SetProperty(ref _value, value); }
     }
 
+    public ListBoxModel()
+    {
+        IsSelected = false;
+    }
+
     public ListBoxModel(T value)
     {
         _value = value;
+        IsSelected = false;
     }
 }

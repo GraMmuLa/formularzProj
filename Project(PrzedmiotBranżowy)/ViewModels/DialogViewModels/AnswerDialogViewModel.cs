@@ -1,16 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Query.Internal;
-using Project_PrzedmiotBranzowy_BackEnd.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Project_PrzedmiotBranzowy_BackEnd.Models;
 using System.Windows;
-using System.Windows.Navigation;
 
 namespace Project_PrzedmiotBranzowy_.ViewModels.DialogViewModels
 {
-    class AddAnswerDialogViewModel : BindableBase, IDialogAware
+    class AnswerDialogViewModel : BindableBase, IDialogAware
     {
         public DialogCloseListener RequestClose { get; set; }
 
@@ -30,13 +23,31 @@ namespace Project_PrzedmiotBranzowy_.ViewModels.DialogViewModels
 
         public DelegateCommand SaveAnswerCommand { get; private set; }
 
-        public AddAnswerDialogViewModel()
+        public AnswerDialogViewModel()
         {
             Title = "Додати відповідь";
 
-            SaveAnswerCommand = new DelegateCommand(() => SaveAnswer());
+            SaveAnswerCommand = new DelegateCommand(SaveAnswer);
 
             Answer = new();
+        }
+
+        public bool CanSaveAnswer() => !string.IsNullOrEmpty(Answer.Title);
+
+        public void SaveAnswer()
+        {
+            if (string.IsNullOrEmpty(Answer.Title))
+            {
+                MessageBox.Show("Введіть заголовок відповіді.");
+                return;
+            }
+
+            DialogParameters parameters = new()
+            {
+                { "answer", Answer }
+            };
+
+            RequestClose.Invoke(parameters, ButtonResult.OK);
         }
 
         public bool CanCloseDialog() => true;
@@ -48,22 +59,12 @@ namespace Project_PrzedmiotBranzowy_.ViewModels.DialogViewModels
         public void OnDialogOpened(IDialogParameters parameters)
         {
             Answer.Question = parameters.GetValue<Question>("question");
-        }
 
-        public void SaveAnswer()
-        {
-            if(string.IsNullOrEmpty(Answer.Title))
+            Answer answerToEdit;
+            if (parameters.TryGetValue<Answer>("answer", out answerToEdit))
             {
-                MessageBox.Show("Введіть заголовок питання.");
-                return;
+                Answer = answerToEdit;
             }
-
-            DialogParameters parameters = new()
-                {
-                    { "answer", Answer }
-                };
-
-            RequestClose.Invoke(parameters, ButtonResult.OK);
         }
     }
 }

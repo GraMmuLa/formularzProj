@@ -5,8 +5,8 @@ namespace Project_PrzedmiotBranzowy_.ViewNames
     public class ViewNamesDialogs
     {
 
-        public static string AddTestDialogViewName { get; } =  nameof(AddTestDialogView);
-        public static string AddQuestionDialogViewName { get; } = nameof(AddQuestionDialogView);
-        public static string AddAnswerDialogViewName { get; } = nameof(AddAnswerDialogView);
+        public static string TestDialogViewName { get; } =  nameof(TestDialogView);
+        public static string QuestionDialogViewName { get; } = nameof(QuestionDialogView);
+        public static string AnswerDialogViewName { get; } = nameof(AnswerDialogView);
     }
 }

@@ -10,10 +10,11 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Navigation;
 using Project_PrzedmiotBranzowy_.ViewNames;
+using Project_PrzedmiotBranzowy__Core.Helpers;
 
 namespace Project_PrzedmiotBranzowy_.ViewModels.DialogViewModels
 {
-    class AddTestDialogViewModel : BindableBase, IDialogAware
+    class TestDialogViewModel : BindableBase, IDialogAware
     {
         private IDialogService _dialogService;
 
@@ -38,13 +39,28 @@ namespace Project_PrzedmiotBranzowy_.ViewModels.DialogViewModels
             set => SetProperty(ref _questions, value);
         }
 
+        private Question? _selectedQuestion;
+        public Question? SelectedQuestion
+        {
+            get { return _selectedQuestion; }
+            set
+            {
+                SetProperty(ref _selectedQuestion, value);
+
+                EditQuestionCommand?.RaiseCanExecuteChanged();
+                DeleteQuestionCommand?.RaiseCanExecuteChanged();
+            }
+        }
+
         public DialogCloseListener RequestClose { get; set; }
 
         public DelegateCommand AddQuestionCommand { get; private set; }
+        public DelegateCommand<Question> EditQuestionCommand { get; private set; }
+        public DelegateCommand<Question> DeleteQuestionCommand { get; private set; }
         public DelegateCommand SaveTestCommand { get; private set; }
 
 
-        public AddTestDialogViewModel(IDialogService dialogService)
+        public TestDialogViewModel(IDialogService dialogService)
         {
             _dialogService = dialogService;
 
@@ -54,20 +70,56 @@ namespace Project_PrzedmiotBranzowy_.ViewModels.DialogViewModels
             Test = new();
 
             AddQuestionCommand = new DelegateCommand(() => AddQuestion());
+            EditQuestionCommand = new DelegateCommand<Question>(DeleteQuestion, CanEditQuestion);
+            DeleteQuestionCommand = new DelegateCommand<Question>(EditQuestion, CanDeleteQuestion);
             SaveTestCommand = new DelegateCommand(() => SaveTest());
         }
+
+        private bool CanEditQuestion(Question question) => question != null;
+        private bool CanDeleteQuestion(Question question) => question != null;
 
         public void AddQuestion()
         {
             DialogParameters parameters = new();
             parameters.Add("test", Test);
 
-            _dialogService.ShowDialog(ViewNamesDialogs.AddQuestionDialogViewName, parameters, (result) =>
+            _dialogService.ShowDialog(ViewNamesDialogs.QuestionDialogViewName, parameters, (result) =>
             {
                 if (result.Result == ButtonResult.OK)
                 {
                     Question resultQuestion = result.Parameters.GetValue<Question>("question");
                     Test.Questions.Add(resultQuestion);
+                    Questions.Add(resultQuestion);
+                }
+            });
+        }
+
+        public void DeleteQuestion(Question question)
+        {
+            Questions.Remove(question);
+            Test.Questions.Remove(question);
+            SelectedQuestion = null;
+        }
+
+        public void EditQuestion(Question question)
+        {
+            //TODO
+            DialogParameters parameters = new()
+            {
+                { "test", Test },
+                { "question", question }
+            };
+
+            _dialogService.ShowDialog(ViewNamesDialogs.QuestionDialogViewName, parameters, (result) =>
+            {
+                if (result.Result == ButtonResult.OK)
+                {
+                    Question resultQuestion = result.Parameters.GetValue<Question>("question");
+
+                    Question? question = Test.Questions.FirstOrDefault(x=>x.Id == resultQuestion.Id);
+                    question = resultQuestion;
+
+                    Questions.Remove(question);
                     Questions.Add(resultQuestion);
                 }
             });
@@ -82,9 +134,10 @@ namespace Project_PrzedmiotBranzowy_.ViewModels.DialogViewModels
             }
             //TODO(minimum 4 tests)
 
-            DialogParameters parameters = new();
-
-            parameters.Add("test", Test);
+            DialogParameters parameters = new()
+            {
+                { "test", Test }
+            };
 
             RequestClose.Invoke(parameters, ButtonResult.OK);
         }
@@ -98,6 +151,13 @@ namespace Project_PrzedmiotBranzowy_.ViewModels.DialogViewModels
 
         public void OnDialogOpened(IDialogParameters parameters)
         {
+            Test testToEdit;
+            if(parameters.TryGetValue<Test>("test", out testToEdit))
+            {
+                Test = testToEdit;
+
+                Questions = new(Test.Questions);
+            }
         }
     }
 }

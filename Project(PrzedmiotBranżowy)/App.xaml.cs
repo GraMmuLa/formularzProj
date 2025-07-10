@@ -32,9 +32,9 @@ public partial class App : PrismApplication
         containerRegistry.RegisterForNavigation<StartTestView, StartTestViewModel>(ViewNamesNavigation.StartTestViewName);
         containerRegistry.RegisterForNavigation<TestView, TestViewModel>(ViewNamesNavigation.StartTestViewName);
 
-        containerRegistry.RegisterDialog<AddTestDialogView, AddTestDialogViewModel>(ViewNamesDialogs.AddTestDialogViewName);
-        containerRegistry.RegisterDialog<AddQuestionDialogView, AddQuestionDialogViewModel>(ViewNamesDialogs.AddQuestionDialogViewName);
-        containerRegistry.RegisterDialog<AddAnswerDialogView, AddAnswerDialogViewModel>(ViewNamesDialogs.AddAnswerDialogViewName);
+        containerRegistry.RegisterDialog<TestDialogView, TestDialogViewModel>(ViewNamesDialogs.TestDialogViewName);
+        containerRegistry.RegisterDialog<QuestionDialogView, QuestionDialogViewModel>(ViewNamesDialogs.QuestionDialogViewName);
+        containerRegistry.RegisterDialog<AnswerDialogView, AnswerDialogViewModel>(ViewNamesDialogs.AnswerDialogViewName);
     }
 
     protected override void OnInitialized()

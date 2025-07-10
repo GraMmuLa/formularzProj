@@ -9,21 +9,34 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
-        <StackPanel>
+        <Button Command="{Binding NavigateHomeViewCommand}" Style="{StaticResource goBackButton}" HorizontalAlignment="Left" Content="&lt;-" FontSize="24" Margin="50,50,0,0" Width="65" Height="65"/>
+
+        <StackPanel Margin="50,20,50,0">
             <Label Content="Ваші тести"/>
-            <ListBox Height="200" ItemsSource="{Binding Tests}" SelectedItem="{Binding SelectedTest, Mode=TwoWay}">
+            <ListBox Height="200" ItemsSource="{Binding Tests}" SelectedItem="{Binding SelectedTest}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Name}"/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
-            <Button Content="Додати" Command="{Binding AddTestCommand}" Margin="0,0,10,0" Padding="10,5"/>
-            <Button Content="Видалити" Command="{Binding DeleteTestCommand}" IsEnabled="{Binding IsSelectedTest}" Margin="0,0,10,0" Padding="10,5"/>
-            <Button Content="Редагувати" Margin="0,0,10,0" Padding="10,5"/>
-            <Button Content="Зберегти" Command="{Binding SaveChangesCommand}" Margin="0,0,10,0" Padding="10,5"/>
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+
+                <Button Content="Додати" Command="{Binding AddTestCommand}"
+                    Margin="0,0,10,0" Padding="10,5"/>
+
+                <Button Content="Видалити" Command="{Binding DeleteTestCommand}"
+                    CommandParameter="{Binding SelectedTest}"
+                    Margin="0,0,10,0" Padding="10,5"/>
+
+                <Button Content="Редагувати"
+                    Command="{Binding EditTestCommand}"
+                    CommandParameter="{Binding SelectedTest}"
+                    Margin="0,0,10,0" Padding="10,5"/>
+
+                <Button Content="Зберегти"
+                    Command="{Binding SaveChangesCommand}" Margin="0,0,10,0" Padding="10,5"/>
+            </StackPanel>
         </StackPanel>
     </StackPanel>
 </UserControl>

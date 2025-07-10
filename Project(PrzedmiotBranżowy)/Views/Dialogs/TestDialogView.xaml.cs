@@ -18,9 +18,9 @@ namespace Project_PrzedmiotBranzowy_.Views.Dialogs
     /// <summary>
     /// Логика взаимодействия для AddTestViewDialog.xaml
     /// </summary>
-    public partial class AddTestDialogView : UserControl
+    public partial class TestDialogView : UserControl
     {
-        public AddTestDialogView()
+        public TestDialogView()
         {
             InitializeComponent();
         }

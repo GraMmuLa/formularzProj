@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Project_PrzedmiotBranzowy_.Views.Dialogs
 {
     /// <summary>
-    /// Логика взаимодействия для AddAnswerDialogView.xaml
+    /// Логика взаимодействия для AddQuestionDialogView.xaml
     /// </summary>
-    public partial class AddAnswerDialogView : UserControl
+    public partial class QuestionDialogView : UserControl
     {
-        public AddAnswerDialogView()
+        public QuestionDialogView()
         {
             InitializeComponent();
         }

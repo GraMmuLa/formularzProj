@@ -44,7 +44,7 @@ namespace Project_PrzedmiotBranzowy_BackEnd.DAL
         {
             return base.SaveChanges();
         }
-
+        
         public Task<int> SaveChangesAsync()
         {
             return base.SaveChangesAsync();

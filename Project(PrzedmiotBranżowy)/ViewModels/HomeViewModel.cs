@@ -1,13 +1,10 @@
-﻿using Project_PrzedmiotBranzowy_BackEnd.DAL;
-using Project_PrzedmiotBranzowy_Core.Helpers;
-using Project_PrzedmiotBranzowy_BackEnd.Models;
-using Project_PrzedmiotBranzowy_Core.Services;
-using Project_PrzedmiotBranzowy_.Views;
-using System.Collections.ObjectModel;
-using System.Windows;
-using Project_PrzedmiotBranzowy_.ViewNames;
+﻿using Project_PrzedmiotBranzowy_.ViewNames;
 using Project_PrzedmiotBranzowy__Core.Helpers;
-using System.ComponentModel;
+using Project_PrzedmiotBranzowy_BackEnd.DAL;
+using Project_PrzedmiotBranzowy_BackEnd.Models;
+using Project_PrzedmiotBranzowy_Core.Helpers;
+using Project_PrzedmiotBranzowy_Core.Services;
+using System.Collections.ObjectModel;
 
 namespace Project_PrzedmiotBranzowy_.ViewModels
 {
@@ -56,6 +53,11 @@ namespace Project_PrzedmiotBranzowy_.ViewModels
             NavigateAdminRegisterCommand = new NavigationCommand(_navigationService,
                 ViewNamesNavigation.ContentRegion,
                 ViewNamesNavigation.AdminRegisterViewName);
+        }
+
+        public void StartTest()
+        {
+            
         }
     }
 }
